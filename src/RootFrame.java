@@ -28,8 +28,8 @@ public class RootFrame extends JFrame {
     }
 
     public void addModels () {
-        CurrencyIn.setModel(new CurrencyModel().getModel());
-        CurrencyOut.setModel(new CurrencyModel().getModel());
+        CurrencyIn.setModel(new CurrencyModel().model);
+        CurrencyOut.setModel(new CurrencyModel().model);
     }
 
     public void convertValues () {
@@ -42,27 +42,73 @@ public class RootFrame extends JFrame {
             double mount = Double.parseDouble(Mount.getText());
             double result = 1;
 
-            String currencyInValue = (String) CurrencyIn.getSelectedItem();
-            String currencyOutValue = (String) CurrencyOut.getSelectedItem();
+            int currencyInValue = CurrencyIn.getSelectedIndex();
+            int currencyOutValue = CurrencyOut.getSelectedIndex();
 
-            assert currencyInValue != null;
-            switch (currencyInValue) {
-                case "PEN" -> mount /= CurrencyRelation.PEN;
-                case "USD" -> mount /= CurrencyRelation.USD;
-                case "EUR" -> mount /= CurrencyRelation.EUR;
-                case "GBP" -> mount /= CurrencyRelation.GBP;
-                case "JPY" -> mount /= CurrencyRelation.JPY;
-                case "KRW" -> mount /= CurrencyRelation.KRW;
+            if (currencyInValue == 0) {
+                switch (currencyOutValue) {
+                    case 0 -> result = mount;
+                    case 1 -> result = mount * 3.6242;
+                    case 2 -> result = mount * 0.919;
+                    case 3 -> result = mount * 0.7866;
+                    case 4 -> result = mount * 144.47;
+                    case 5 -> result = mount * 1294.81;
+                }
             }
 
-            assert currencyOutValue != null;
-            switch (currencyOutValue) {
-                case "PEN" -> result = mount * CurrencyRelation.PEN;
-                case "USD" -> result = mount * CurrencyRelation.USD;
-                case "EUR" -> result = mount * CurrencyRelation.EUR;
-                case "GBP" -> result = mount * CurrencyRelation.GBP;
-                case "JPY" -> result = mount * CurrencyRelation.JPY;
-                case "KRW" -> result = mount * CurrencyRelation.KRW;
+            if (currencyInValue == 1) {
+                switch (currencyOutValue) {
+                    case 0 -> result = mount * 0.2755;
+                    case 1 -> result = mount;
+                    case 2 -> result = mount * 0.2532;
+                    case 3 -> result = mount * 0.2167;
+                    case 4 -> result = mount * 39.8002;
+                    case 5 -> result = mount * 356.8614;
+                }
+            }
+
+            if (currencyInValue == 2) {
+                switch (currencyOutValue) {
+                    case 0 -> result = mount * 1.088;
+                    case 1 -> result = mount * 3.9492;
+                    case 2 -> result = mount;
+                    case 3 -> result = mount * 0.8559;
+                    case 4 -> result = mount * 157.18;
+                    case 5 -> result = mount * 1408.75;
+                }
+            }
+
+            if (currencyInValue == 3) {
+                switch (currencyOutValue) {
+                    case 0 -> result = mount * 1.2712;
+                    case 1 -> result = mount * 4.6142;
+                    case 2 -> result = mount * 1.1684;
+                    case 3 -> result = mount;
+                    case 4 -> result = mount * 183.65;
+                    case 5 -> result = mount * 1646.6321;
+                }
+            }
+
+            if (currencyInValue == 4) {
+                switch (currencyOutValue) {
+                    case 0 -> result = mount * 0.0069;
+                    case 1 -> result = mount * 0.0251;
+                    case 2 -> result = mount * 0.0064;
+                    case 3 -> result = mount * 0.0054;
+                    case 4 -> result = mount;
+                    case 5 -> result = mount * 8.9663;
+                }
+            }
+
+            if (currencyInValue == 5) {
+                switch (currencyOutValue) {
+                    case 0 -> result = mount * 0.0008;
+                    case 1 -> result = mount * 0.0028;
+                    case 2 -> result = mount * 0.0007;
+                    case 3 -> result = mount * 0.0006;
+                    case 4 -> result = mount * 0.1115;
+                    case 5 -> result = mount;
+                }
             }
 
             Result.setText(String.valueOf(result));
