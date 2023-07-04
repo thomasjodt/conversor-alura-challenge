@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AluraConverter">
+    <output-path>$PROJECT_DIR$/out/artifacts/AluraConverter</output-path>
+    <root id="archive" name="AluraConverter.jar">
+      <element id="module-output" name="AluraConverter" />
+    </root>
+  </artifact>
+</component>
