@@ -29,9 +29,13 @@ public class RootFrame extends JFrame {
 
     public void addModels () {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        model.addElement("PEN");
-        model.addElement("USD");
-        model.addElement("EUR");
+        model.addElement("PEN"); // Sol peruano
+        model.addElement("USD"); // Dólar
+        model.addElement("EUR"); // Euro
+        model.addElement("GBP"); // Libra esterlina
+        model.addElement("JPY"); // Yen japonés
+        model.addElement("KRW"); // Won coreano
+
         CurrencyIn.setModel(model);
         CurrencyOut.setModel(model);
     }
