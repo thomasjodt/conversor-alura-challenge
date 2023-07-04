@@ -28,21 +28,16 @@ public class RootFrame extends JFrame {
     }
 
     public void addModels () {
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        model.addElement("PEN"); // Sol peruano
-        model.addElement("USD"); // Dólar
-        model.addElement("EUR"); // Euro
-        model.addElement("GBP"); // Libra esterlina
-        model.addElement("JPY"); // Yen japonés
-        model.addElement("KRW"); // Won coreano
-
-        CurrencyIn.setModel(model);
-        CurrencyOut.setModel(model);
+        CurrencyIn.setModel(new CurrencyModel().getModel());
+        CurrencyOut.setModel(new CurrencyModel().getModel());
     }
 
     public void convertValues () {
         ConvertButton.addActionListener(e -> {
-            if (Mount.getText().trim().equals("")) return;
+            if (Mount.getText().trim().equals("")) {
+                System.out.println("No puede estar vacío");
+                return;
+            }
 
             double mount = Double.parseDouble(Mount.getText());
             double result = 1;
@@ -51,16 +46,27 @@ public class RootFrame extends JFrame {
             String currencyOutValue = (String) CurrencyOut.getSelectedItem();
 
             assert currencyInValue != null;
-            if (currencyInValue.equals("PEN")) result = mount / CurrencyRelation.PEN;
-            if (currencyInValue.equals("USD")) result = mount / CurrencyRelation.USD;
-            if (currencyInValue.equals("EUR")) result = mount / CurrencyRelation.EUR;
+            switch (currencyInValue) {
+                case "PEN" -> mount /= CurrencyRelation.PEN;
+                case "USD" -> mount /= CurrencyRelation.USD;
+                case "EUR" -> mount /= CurrencyRelation.EUR;
+                case "GBP" -> mount /= CurrencyRelation.GBP;
+                case "JPY" -> mount /= CurrencyRelation.JPY;
+                case "KRW" -> mount /= CurrencyRelation.KRW;
+            }
 
             assert currencyOutValue != null;
-            if (currencyOutValue.equals("PEN")) result *= CurrencyRelation.PEN;
-            if (currencyOutValue.equals("USD")) result *= CurrencyRelation.USD;
-            if (currencyOutValue.equals("EUR")) result *= CurrencyRelation.EUR;
+            switch (currencyOutValue) {
+                case "PEN" -> result = mount * CurrencyRelation.PEN;
+                case "USD" -> result = mount * CurrencyRelation.USD;
+                case "EUR" -> result = mount * CurrencyRelation.EUR;
+                case "GBP" -> result = mount * CurrencyRelation.GBP;
+                case "JPY" -> result = mount * CurrencyRelation.JPY;
+                case "KRW" -> result = mount * CurrencyRelation.KRW;
+            }
 
             Result.setText(String.valueOf(result));
+            Mount.setText("");
         });
     }
 }
