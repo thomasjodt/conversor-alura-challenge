@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73ee371a-4741-4268-bb8b-c2b34bd327b0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CurrencyModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CurrencyModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CurrencyRelation.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RootFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/RootFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RootFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RootFrame.java" afterDir="false" />
     </list>

@@ -33,18 +33,31 @@ public class RootFrame extends JFrame {
     }
 
     public void convertValues () {
-        ConvertButton.addActionListener(e -> {
+        ConvertButton.addActionListener(e -> { // Action Listener con Lambda
+
+            // Cláusula de guarda para impedir seguir con la lógica si no hay una cantidad esfecificada.
             if (Mount.getText().trim().equals("")) {
                 System.out.println("No puede estar vacío");
                 return;
             }
 
+            // Cláusula para impedir que el programa continue si hay carácteres alfabéticos.
+            if (Mount.getText().trim().matches("[a-zA-Z]+")) {
+                System.out.println("Solo se admiten números");
+                Mount.setText("");
+                return;
+            }
+
+            // variables para monto y resultado
             double mount = Double.parseDouble(Mount.getText());
             double result = 1;
 
+            // variables para los valores de conversión de divisas
             int currencyInValue = CurrencyIn.getSelectedIndex();
             int currencyOutValue = CurrencyOut.getSelectedIndex();
 
+            // Condicionales para cada tipo de divisas
+            // TODO: Mejorar lógica para escribir menos código y hacer el código más mantenible.
             if (currencyInValue == 0) {
                 switch (currencyOutValue) {
                     case 0 -> result = mount;
@@ -112,7 +125,6 @@ public class RootFrame extends JFrame {
             }
 
             Result.setText(String.valueOf(result));
-            Mount.setText("");
         });
     }
 }
